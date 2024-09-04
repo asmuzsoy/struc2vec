@@ -94,8 +94,8 @@ def learn_embeddings():
     """
     logging.info("Initializing creation of the representations...")
     walks = LineSentence('random_walks.txt')
-    model = Word2Vec(walks, size=args.dimensions, window=args.window_size, min_count=0, hs=1, sg=1,
-                     workers=args.workers, iter=args.iter)
+    model = Word2Vec(walks, vector_size=args.dimensions, window=args.window_size, min_count=0, hs=1, sg=1,
+                     workers=args.workers, epochs=args.iter)
     model.wv.save_word2vec_format(args.output)
     logging.info("Representations created.")
 
@@ -106,8 +106,8 @@ def exec_struc2vec(args):
     """
     Pipeline for representational learning for all nodes in a graph.
     """
-    if args.weighted and not args.directed:
-        raise NotImplementedError('edge weights are only implemented for directed graphs')
+    # if args.weighted and not args.directed:
+    #     raise NotImplementedError('edge weights are only implemented for directed graphs')
 
     if args.OPT3:
         until_layer = args.until_layer
